@@ -1,0 +1,67 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "dfm",
+	"fileTypes": [
+		"source.dfm"
+	],
+	"firstLineMatch": "^(inherited|object)\\s+\\w{1}\\s*:\\s*\\w$",
+	"foldingStartMarker": "^(inherited|object)\\s+\\w{1}\\s*:\\s*\\w$",
+	"foldingStopMarker": "^end$",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#entities"
+		},
+		{
+			"include": "#constants"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.object.dfm",
+				"match": "\\b(inherited|object|end)\\b"
+			}]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.numeric.dfm",
+					"match": "\\b\\d+\\b"
+				},
+				{
+					"name": "constant.language.dfm",
+					"match": "\\b([Tt]rue|[Ff]alse)\\b"
+				},
+				{
+					"name": "string.quoted.single.dfm",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"match": "\\b\\w+\\b"
+						}
+					]
+				}
+			]
+		},
+		"entities": {
+			"patterns": [
+				{
+					"match": "\\s+(\\w+)\\s*:\\s+(\\w+)",
+					"captures": {
+						"1": {
+							"name": "variable.parameter.dfm"
+						},
+						"2": {
+							"name": "entity.name.type.dfm"
+						}  
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.dfm"
+}
