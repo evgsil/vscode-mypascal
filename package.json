@@ -1,63 +1,79 @@
 {
-	"name": "delphiswitch2form",
-	"displayName": "delphiSwitch2form",
-	"description": "",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.44.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:delphiswitch2form.switchPasDfm"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "delphiswitch2form.switchPasDfm",
-				"title": "Switch Between *.pas and *.dfm files"
-			}
-		],
-		"keybindings": [
-			{
-				"key": "pausebreak",
-				"command": "delphiswitch2form.switchPasDfm",
-				"when": "editorTextFocus"
-		  }
-		],
-		"languages": [{
-				"id": "dfm",
-				"aliases": ["Delphi Forms", "delphi forms"],
-				"extensions": [".dfm"],
-				"configuration": "./language-configuration.json"
-		}],
-		"grammars": [{
-				"language": "dfm",
-				"scopeName": "source.dfm",
-				"path": "./syntaxes/dfm.tmLanguage.json"
-		}]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.44.0",
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.2",
-		"@types/node": "^13.11.0",
-		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.26.0",
-		"@typescript-eslint/eslint-plugin": "^2.26.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.1.1",
-		"typescript": "^3.8.3",
-		"vscode-test": "^1.3.0"
-	}
+  "name": "delphiswitch2form",
+  "displayName": "delphiSwitch2form",
+  "publisher": "sjone",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.44.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:delphiswitch2form.switchPasDfm",
+    "onCommand:delphiswitch2form.test"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "delphiswitch2form.switchPasDfm",
+        "title": "Switch Between *.pas and *.dfm files"
+      },
+      {
+        "command": "delphiswitch2form.test",
+        "title": "My Test"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "pausebreak",
+        "command": "delphiswitch2form.switchPasDfm",
+        "when": "editorTextFocus"
+      }
+    ],
+    "languages": [
+      {
+        "id": "dfm",
+        "aliases": [
+          "Delphi Forms",
+          "delphi forms"
+        ],
+        "extensions": [
+          ".dfm"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "dfm",
+        "scopeName": "source.dfm",
+        "path": "./syntaxes/dfm.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "package": "npx vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.44.0",
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.11.0",
+    "eslint": "^6.8.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "glob": "^7.1.6",
+    "mocha": "^7.1.1",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.3.0"
+  }
 }
