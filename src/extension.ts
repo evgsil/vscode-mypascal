@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import { switchPasDfm } from "./switchPasDfm";
 import { runDelphi } from "./runDelphi";
+import { getConfig } from "./config";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -21,6 +22,18 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand("mypascal.runDelphi", runDelphi)
   );
+
+  try {
+    const config = getConfig();
+    if (config.pathToDpr) {
+      vscode.commands.executeCommand(
+        "omnipascal.loadProject",
+        config.pathToDpr
+      );
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // this method is called when your extension is deactivated

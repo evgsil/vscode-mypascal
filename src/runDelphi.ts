@@ -112,7 +112,7 @@ const generateDskFile = (fileName: string) => {
 
 export const runDelphi = () => {
   try {
-    const config = getConfig();
+    const config = getConfig(true);
     generateDskFile(config.pathToDsk);
     try {
       execSync("%windir%\\system32\\taskkill.exe /F /IM bds.exe");

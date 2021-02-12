@@ -1,17 +1,19 @@
 import * as vscode from "vscode";
 import * as path from "path";
 
-export const getConfig = () => {
+export const getConfig = (validate = false) => {
   const conf = vscode.workspace.getConfiguration("mypascal");
 
   const pathToDelphiBin = String(conf.get("pathToDelphiBin") ?? "");
   const pathToDpr = String(conf.get("pathToDpr") ?? "");
 
-  if (!pathToDelphiBin) {
-    throw new Error("pathToDelphiBin is not specified");
-  }
-  if (!pathToDpr) {
-    throw new Error("pathToDpr is not specified");
+  if (validate) {
+    if (!pathToDelphiBin) {
+      throw new Error("pathToDelphiBin is not specified");
+    }
+    if (!pathToDpr) {
+      throw new Error("pathToDpr is not specified");
+    }
   }
 
   const pathToBds = path.join(pathToDelphiBin, "bds.exe");
