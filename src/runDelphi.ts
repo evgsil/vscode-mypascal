@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import { getConfig } from "./config";
+import { exec, execSync } from "child_process";
 
 const stringifyIni = (obj: {
   [key: string]: {
@@ -93,7 +94,8 @@ const generateDskFile = (fileName: string) => {
       ViewCount: views.length,
       CurrentEditView:
         vscode.window.activeTextEditor?.document.fileName ??
-        views[0].EditViewName,
+        views[0]?.EditViewName ??
+        "",
       ...views.reduce((acc, val, idx) => ({ ...acc, [`View${idx}`]: idx }), {}),
     },
     ...views.reduce((acc, val, idx) => ({ ...acc, [`View${idx}`]: val }), {}),
@@ -109,7 +111,14 @@ const generateDskFile = (fileName: string) => {
 };
 
 export const runDelphi = () => {
-  const config = getConfig();
-  console.log(config);
-  generateDskFile(config.pathToDsk);
+  try {
+    const config = getConfig();
+    generateDskFile(config.pathToDsk);
+    try {
+      execSync("%windir%\\system32\\taskkill.exe /F /IM bds.exe");
+    } catch {}
+    exec(`"${config.pathToBds}" ${config.pathToDpr}`);
+  } catch (error) {
+    console.error(error);
+  }
 };
