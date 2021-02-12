@@ -1,4 +1,3 @@
-import { off } from "process";
 import * as vscode from "vscode";
 
 export const focusWord = (editor: vscode.TextEditor, word: string) => {
@@ -45,21 +44,4 @@ export const switchPasDfm = () => {
         focusWord(editor, textAtCursor);
       }
     });
-};
-
-export const generateDskFile = () => {
-  const editor = vscode.window.activeTextEditor;
-  if (editor) {
-    const pathArray = editor.document.fileName.split(".");
-    const ext = (pathArray.pop() || "").toLowerCase();
-    if (ext === "pas") {
-      vscode.workspace
-        .openTextDocument([...pathArray, "dfm"].join("."))
-        .then((doc) => vscode.window.showTextDocument(doc));
-    } else if (ext === "dfm") {
-      vscode.workspace
-        .openTextDocument([...pathArray, "pas"].join("."))
-        .then((doc) => vscode.window.showTextDocument(doc));
-    }
-  }
 };

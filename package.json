@@ -1,8 +1,8 @@
 {
-  "name": "delphiswitch2form",
-  "displayName": "delphiSwitch2form",
-  "publisher": "sjone",
-  "description": "",
+  "name": "mypascal",
+  "displayName": "My Pascal",
+  "publisher": "evgsil",
+  "description": "Useful Pascal/Delphi tools",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.44.0"
@@ -11,25 +11,25 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:delphiswitch2form.switchPasDfm",
-    "onCommand:delphiswitch2form.test"
+    "onCommand:mypascal.switchPasDfm",
+    "onCommand:mypascal.runDelphi"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "delphiswitch2form.switchPasDfm",
+        "command": "mypascal.switchPasDfm",
         "title": "Switch Between *.pas and *.dfm files"
       },
       {
-        "command": "delphiswitch2form.test",
-        "title": "My Test"
+        "command": "mypascal.runDelphi",
+        "title": "Run Delphi"
       }
     ],
     "keybindings": [
       {
         "key": "pausebreak",
-        "command": "delphiswitch2form.switchPasDfm",
+        "command": "mypascal.switchPasDfm",
         "when": "editorTextFocus"
       }
     ],
@@ -52,7 +52,28 @@
         "scopeName": "source.dfm",
         "path": "./syntaxes/dfm.tmLanguage.json"
       }
-    ]
+    ],
+    "breakpoints": [
+      {
+        "language": "objectpascal"
+      }
+    ],
+    "configuration": {
+      "title": "My Pascal",
+      "properties": {
+        "mypascal.pathToDelphiBin": {
+          "type": "string",
+          "title": "Path to delphi\\bin folder",
+          "default": "C:\\Program Files (x86)\\Embarcadero\\Studio\\15.0\\bin\\"
+        },
+        "mypascal.pathToDpr": {
+          "type": "string",
+          "default": "",
+          "title": "Path to *.dpr",
+          "description": "Path to delphi project *.dpr file"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -75,5 +96,8 @@
     "mocha": "^7.1.1",
     "typescript": "^3.8.3",
     "vscode-test": "^1.3.0"
+  },
+  "dependencies": {
+    "@types/ini": "^1.3.30"
   }
 }
