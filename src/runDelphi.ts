@@ -48,7 +48,7 @@ const generateDskFile = (fileName: string) => {
       if (b instanceof vscode.SourceBreakpoint) {
         return [
           quoteStr(b.location.uri.fsPath), // file path
-          b.location.range.start.line, // line number
+          b.location.range.start.line + 1, // line number
           quoteStr(b.condition ?? ""), // condition
           Number.parseInt(b.hitCondition ?? "0") ?? 0, // pass count
           b.enabled ? 1 : 0, // enabled
