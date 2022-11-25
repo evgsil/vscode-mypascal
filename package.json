@@ -71,7 +71,7 @@
         "mypascal.pathToDelphiBin": {
           "type": "string",
           "title": "Path to delphi\\bin folder",
-          "default": "C:\\Program Files (x86)\\Embarcadero\\Studio\\15.0\\bin\\"
+          "default": "C:\\Program Files (x86)\\Embarcadero\\Studio\\19.0\\bin\\"
         },
         "mypascal.pathToDpr": {
           "type": "string",
